@@ -3,21 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تابلو ساعت دیجیتال</title>
+<title>تابلو دیجیتال پلیس</title>
 <style>
-*{box-sizing:border-box}
+*{box-sizing:border-box;}
 body{
     margin:0;
-    direction:rtl;
     font-family:Tahoma,sans-serif;
+    direction:rtl;
     background:#000;
     color:#000;
 }
 #bg{
     position:fixed;
     inset:0;
+    background-image:url('https://i1.delgarm.com/images/news/a813/1398/05/12/1564838069_E5kH3.jpg');
     background-size:cover;
     background-position:center;
+    opacity:0.85;
     z-index:-2;
 }
 
@@ -31,13 +33,13 @@ body{
     padding-bottom:40px;
 }
 
-/* سر برگ بالای ساعت */
+/* سر برگ */
 .header{
     margin-top:20px;
     font-size:36px;
     font-weight:bold;
     color:#eef7ff;
-    text-shadow: 0 0 12px rgba(0,0,0,0.7);
+    text-shadow:0 0 12px rgba(0,0,0,0.7);
 }
 
 /* ساعت آنالوگ */
@@ -59,8 +61,6 @@ body{
     align-items:center;
     box-shadow:0 0 40px rgba(110,198,255,.7);
 }
-
-/* شماره های ساعت */
 .num{
     position:absolute;
     color:#eef7ff;
@@ -79,7 +79,6 @@ body{
 .n9{top:50%;left:10px;transform:translateY(-50%)}
 .n10{top:90px;left:25px;}
 .n11{top:40px;left:50px;}
-
 .hand{
     position:absolute;
     left:50%;
@@ -110,49 +109,45 @@ body{
     text-shadow:0 0 12px rgba(255,255,255,0.6);
 }
 
-/* کارت‌ها شیشه‌ای */
+/* کارت‌ها ۵ تا ۵ تا */
+.cards-container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:20px;
+    gap:16px;
+    width:95%;
+}
 .glass{
     background:rgba(255,255,255,0.92);
     backdrop-filter:blur(25px) saturate(180%);
     -webkit-backdrop-filter:blur(25px) saturate(180%);
     border-radius:22px;
-    padding:26px 20px;
-    margin:16px auto;
-    width:90%;
-    max-width:700px;
-    line-height:1.6;
-    color:#000; /* متن مشکی پررنگ */
-    font-size:22px;
-    font-weight:bold; /* پررنگ */
-    text-align:center;
-    box-shadow:
-        0 15px 35px rgba(0,0,0,.3),
-        inset 0 0 0 1px rgba(255,255,255,.6);
+    padding:20px;
+    flex: 1 1 calc(18% - 16px); /* 5 کارت در ردیف */
+    min-width:180px;
+    max-width:220px;
+    line-height:1.5;
+    color:#000;
+    font-size:20px;
+    font-weight:bold;
+    text-align:right;
+    box-shadow:0 15px 35px rgba(0,0,0,.3), inset 0 0 0 1px rgba(255,255,255,.6);
 }
 
-/* تاریخ */
+/* تاریخ کوچک و جمع و جور */
 .date-card{
-    font-size:28px;
+    font-size:18px;
     font-weight:bold;
     text-align:center;
-    color:#000; /* مشکی پررنگ */
+    color:#000;
+    width:80%;
+    max-width:400px;
+    padding:10px 15px;
+    margin:5px auto;
 }
 
-/* اسلایدر ساده */
-.slider{
-    position:relative;
-    width:100%;
-    height:auto;
-    overflow:hidden;
-}
-.slide{
-    display:none;
-}
-.slide.active{
-    display:flex;
-}
-
-/* تغییر پس زمینه با لینک ساده */
+/* تغییر تصویر زمینه */
 .bg-change{
     position:fixed;
     top:10px;
@@ -168,20 +163,17 @@ body{
 </head>
 <body>
 
-<!-- لینک ساده تغییر پس زمینه -->
 <label class="bg-change">
     تغییر تصویر
     <input type="file" id="bgInput" accept="image/*" style="display:none;">
 </label>
 
-<div id="bg" style="background-image:url('');"></div>
+<div id="bg"></div>
 
 <div class="overlay">
 
-    <!-- سر برگ بالای ساعت -->
     <div class="header">دفتر پلیس + ۱۰ یزدان پناه</div>
 
-    <!-- ساعت -->
     <div class="clock-area">
         <div class="analog">
             <div class="hand hour" id="hour"></div>
@@ -205,27 +197,22 @@ body{
         <div class="digital" id="digital"></div>
     </div>
 
-    <!-- تاریخ -->
     <div class="glass date-card" id="shamsi"></div>
     <div class="glass date-card" id="miladi"></div>
 
-    <!-- کارت‌های خدمات -->
-    <div class="slider">
-        <div class="glass slide active">
-            هدف: دفتر پلیس+۱۰ یزدان پناه<br>
-            کد دفتر: ۵۸۵۱۱۲<br>
-            خدمات: ✓ گذرنامه ✓ خلافی و عدم خلافی ✓ کارت سوخت
-        </div>
-        <div class="glass slide">
-            هدف: دفتر پلیس+۱۰ یزدان پناه<br>
-            کد دفتر: ۵۸۵۱۱۲<br>
-            خدمات: ✓ ترخیص وسیله نقلیه ✓ وظیفه عمومی و اعزام
-        </div>
-        <div class="glass slide">
-            هدف: دفتر پلیس+۱۰ یزدان پناه<br>
-            کد دفتر: ۵۸۵۱۱۲<br>
-            خدمات: ✓ معافیت تحصیلی ✓ تعویض کارت پایان خدمت ✓ یارانه
-        </div>
+    <div class="cards-container">
+        <div class="glass">هدف: دفتر پلیس + ۱۰ یزدان پناه</div>
+        <div class="glass">کد دفتر: ۵۸۵۱۱۲</div>
+        <div class="glass">خدمات: گذرنامه</div>
+        <div class="glass">خدمات: اجرائیات (خلافی و عدم خلافی)</div>
+        <div class="glass">خدمات: کارت سوخت</div>
+        <div class="glass">خدمات: ترخیص وسیله نقلیه</div>
+        <div class="glass">خدمات: وظیفه عمومی و اعزام سربازی</div>
+        <div class="glass">خدمات: معافیت تحصیلی (داخلی و خارجی)</div>
+        <div class="glass">خدمات: تعویض کارت پایان خدمت و معافیت از خدمت</div>
+        <div class="glass">خدمات: درخواست سنوات تحصیلی دانشجویان</div>
+        <div class="glass">خدمات: درخواست ترخیص از خدمت</div>
+        <div class="glass">خدمات: یارانه</div>
     </div>
 
 </div>
@@ -237,10 +224,7 @@ const second = document.querySelector("#second");
 const digital = document.querySelector("#digital");
 const shamsi = document.querySelector("#shamsi");
 const miladi = document.querySelector("#miladi");
-const slides = document.querySelectorAll(".slide");
-let currentSlide = 0;
 
-// آپدیت ساعت و تاریخ
 function update(){
     const d = new Date();
     second.style.transform = `rotate(${d.getSeconds()*6}deg)`;
@@ -253,14 +237,6 @@ function update(){
 setInterval(update,1000);
 update();
 
-// اسلایدر کارت‌ها
-setInterval(()=>{
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add('active');
-},4000);
-
-// تغییر تصویر زمینه
 const bgInput = document.querySelector("#bgInput");
 const bg = document.querySelector("#bg");
 bgInput.onchange = function(){
