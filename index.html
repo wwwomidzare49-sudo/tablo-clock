@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تابلو ساعت دیجیتال</title>
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    direction:rtl;
+    font-family:Tahoma,sans-serif;
+    background:#000;
+    color:#000;
+}
+#bg{
+    position:fixed;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    z-index:-2;
+}
+
+/* Overlay */
+.overlay{
+    background:rgba(0,0,0,0.45);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding-bottom:40px;
+}
+
+/* سر برگ بالای ساعت */
+.header{
+    margin-top:20px;
+    font-size:36px;
+    font-weight:bold;
+    color:#eef7ff;
+    text-shadow: 0 0 12px rgba(0,0,0,0.7);
+}
+
+/* ساعت آنالوگ */
+.clock-area{
+    text-align:center;
+    margin-top:10px;
+}
+.analog{
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:rgba(110,198,255,0.2);
+    backdrop-filter:blur(25px) saturate(180%);
+    -webkit-backdrop-filter:blur(25px) saturate(180%);
+    position:relative;
+    margin:10px auto 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 0 40px rgba(110,198,255,.7);
+}
+
+/* شماره های ساعت */
+.num{
+    position:absolute;
+    color:#eef7ff;
+    font-size:32px;
+    font-weight:bold;
+}
+.n12{top:10px;left:50%;transform:translateX(-50%)}
+.n1{top:40px;right:50px;}
+.n2{top:90px;right:25px;}
+.n3{top:50%;right:10px;transform:translateY(-50%)}
+.n4{bottom:90px;right:25px;}
+.n5{bottom:40px;right:50px;}
+.n6{bottom:10px;left:50%;transform:translateX(-50%)}
+.n7{bottom:40px;left:50px;}
+.n8{bottom:90px;left:25px;}
+.n9{top:50%;left:10px;transform:translateY(-50%)}
+.n10{top:90px;left:25px;}
+.n11{top:40px;left:50px;}
+
+.hand{
+    position:absolute;
+    left:50%;
+    bottom:50%;
+    transform-origin:bottom;
+    border-radius:6px;
+}
+.hour{width:12px;height:110px;background:#fff}
+.minute{width:6px;height:150px;background:#fff}
+.second{width:3px;height:170px;background:#ff5c5c}
+.center{
+    width:18px;
+    height:18px;
+    background:#fff;
+    border-radius:50%;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+/* ساعت دیجیتال */
+.digital{
+    margin-top:18px;
+    font-size:72px;
+    font-weight:bold;
+    color:rgba(255,0,0,0.8);
+    text-shadow:0 0 12px rgba(255,255,255,0.6);
+}
+
+/* کارت‌ها شیشه‌ای */
+.glass{
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(25px) saturate(180%);
+    -webkit-backdrop-filter:blur(25px) saturate(180%);
+    border-radius:22px;
+    padding:26px 20px;
+    margin:16px auto;
+    width:90%;
+    max-width:700px;
+    line-height:1.6;
+    color:#000; /* متن مشکی پررنگ */
+    font-size:22px;
+    font-weight:bold; /* پررنگ */
+    text-align:center;
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.3),
+        inset 0 0 0 1px rgba(255,255,255,.6);
+}
+
+/* تاریخ */
+.date-card{
+    font-size:28px;
+    font-weight:bold;
+    text-align:center;
+    color:#000; /* مشکی پررنگ */
+}
+
+/* اسلایدر ساده */
+.slider{
+    position:relative;
+    width:100%;
+    height:auto;
+    overflow:hidden;
+}
+.slide{
+    display:none;
+}
+.slide.active{
+    display:flex;
+}
+
+/* تغییر پس زمینه با لینک ساده */
+.bg-change{
+    position:fixed;
+    top:10px;
+    left:10px;
+    background:rgba(255,255,255,0.8);
+    padding:8px 12px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    z-index:10;
+}
+</style>
+</head>
+<body>
+
+<!-- لینک ساده تغییر پس زمینه -->
+<label class="bg-change">
+    تغییر تصویر
+    <input type="file" id="bgInput" accept="image/*" style="display:none;">
+</label>
+
+<div id="bg" style="background-image:url('');"></div>
+
+<div class="overlay">
+
+    <!-- سر برگ بالای ساعت -->
+    <div class="header">دفتر پلیس + ۱۰ یزدان پناه</div>
+
+    <!-- ساعت -->
+    <div class="clock-area">
+        <div class="analog">
+            <div class="hand hour" id="hour"></div>
+            <div class="hand minute" id="minute"></div>
+            <div class="hand second" id="second"></div>
+            <div class="center"></div>
+
+            <div class="num n12">12</div>
+            <div class="num n1">1</div>
+            <div class="num n2">2</div>
+            <div class="num n3">3</div>
+            <div class="num n4">4</div>
+            <div class="num n5">5</div>
+            <div class="num n6">6</div>
+            <div class="num n7">7</div>
+            <div class="num n8">8</div>
+            <div class="num n9">9</div>
+            <div class="num n10">10</div>
+            <div class="num n11">11</div>
+        </div>
+        <div class="digital" id="digital"></div>
+    </div>
+
+    <!-- تاریخ -->
+    <div class="glass date-card" id="shamsi"></div>
+    <div class="glass date-card" id="miladi"></div>
+
+    <!-- کارت‌های خدمات -->
+    <div class="slider">
+        <div class="glass slide active">
+            هدف: دفتر پلیس+۱۰ یزدان پناه<br>
+            کد دفتر: ۵۸۵۱۱۲<br>
+            خدمات: ✓ گذرنامه ✓ خلافی و عدم خلافی ✓ کارت سوخت
+        </div>
+        <div class="glass slide">
+            هدف: دفتر پلیس+۱۰ یزدان پناه<br>
+            کد دفتر: ۵۸۵۱۱۲<br>
+            خدمات: ✓ ترخیص وسیله نقلیه ✓ وظیفه عمومی و اعزام
+        </div>
+        <div class="glass slide">
+            هدف: دفتر پلیس+۱۰ یزدان پناه<br>
+            کد دفتر: ۵۸۵۱۱۲<br>
+            خدمات: ✓ معافیت تحصیلی ✓ تعویض کارت پایان خدمت ✓ یارانه
+        </div>
+    </div>
+
+</div>
+
+<script>
+const hour = document.querySelector("#hour");
+const minute = document.querySelector("#minute");
+const second = document.querySelector("#second");
+const digital = document.querySelector("#digital");
+const shamsi = document.querySelector("#shamsi");
+const miladi = document.querySelector("#miladi");
+const slides = document.querySelectorAll(".slide");
+let currentSlide = 0;
+
+// آپدیت ساعت و تاریخ
+function update(){
+    const d = new Date();
+    second.style.transform = `rotate(${d.getSeconds()*6}deg)`;
+    minute.style.transform = `rotate(${d.getMinutes()*6}deg)`;
+    hour.style.transform = `rotate(${(d.getHours()%12)*30 + d.getMinutes()/2}deg)`;
+    digital.innerText = d.toLocaleTimeString('en-GB');
+    shamsi.innerText = d.toLocaleDateString('fa-IR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+    miladi.innerText = d.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+}
+setInterval(update,1000);
+update();
+
+// اسلایدر کارت‌ها
+setInterval(()=>{
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+},4000);
+
+// تغییر تصویر زمینه
+const bgInput = document.querySelector("#bgInput");
+const bg = document.querySelector("#bg");
+bgInput.onchange = function(){
+    const reader = new FileReader();
+    reader.onload = e => bg.style.backgroundImage = `url(${e.target.result})`;
+    reader.readAsDataURL(this.files[0]);
+}
+</script>
+
+</body>
+</html>
