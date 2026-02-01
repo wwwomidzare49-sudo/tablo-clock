@@ -2,220 +2,208 @@
 <html lang="fa">
 <head>
 <meta charset="UTF-8">
-<title>تابلو دیجیتال دفتر پلیس +۱۰</title>
+<title>دفتر پلیس +۱۰ یزدان پناه</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{margin:0;padding:0;box-sizing:border-box}
 html,body{
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    font-family:Tahoma, sans-serif;
-    direction:rtl;
-    background:#000;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  direction:rtl;
+  font-family:Tahoma, sans-serif;
 }
 
-/* پس‌زمینه */
-.bg{
-    position:fixed;
-    inset:0;
-    background:url("https://i1.delgarm.com/images/news/a813/1398/05/12/1564838069_E5kH3.jpg")
-    center / contain no-repeat;
-    opacity:.9;
-    z-index:-2;
+/* پس‌زمینه سازگار با Firefox و TV */
+body{
+  background-image:url("https://i1.delgarm.com/images/news/a813/1398/05/12/1564838069_E5kH3.jpg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
 }
+
+/* لایه تیره */
 .overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.45);
-    z-index:-1;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);
 }
 
-/* ساختار اصلی */
-.container{
-    height:100%;
-    display:grid;
-    grid-template-rows:90px 1fr 260px;
+/* ساختار */
+.main{
+  position:relative;
+  height:100%;
+  display:grid;
+  grid-template-rows:90px 1fr 260px;
+  color:#000;
 }
 
 /* هدر */
 .header{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:18px;
-    color:#fff;
-    font-size:40px;
-    font-weight:bold;
+  text-align:center;
+  color:#fff;
+  font-size:38px;
+  font-weight:bold;
+  line-height:90px;
 }
 
-/* لوگوی داخلی */
-.logo{
-    width:60px;
-    height:60px;
+/* بخش وسط */
+.middle{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
 }
 
-/* بخش بالا */
-.top{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    align-items:center;
+/* ساعت آنالوگ */
+.clock{
+  width:320px;
+  height:320px;
+  margin:auto;
+  border-radius:50%;
+  background:rgba(180,220,255,0.25);
+  backdrop-filter:blur(25px);
+  position:relative;
 }
 
-/* ساعت */
-.clock-box{text-align:center}
-.analog{
-    width:300px;height:300px;
-    margin:auto;
-    border-radius:50%;
-    background:rgba(120,200,255,.25);
-    backdrop-filter:blur(30px);
-    box-shadow:0 0 35px rgba(120,200,255,.7);
-    position:relative;
+.number{
+  position:absolute;
+  color:#fff;
+  font-size:24px;
+  font-weight:bold;
 }
-.num{
-    position:absolute;
-    color:#fff;
-    font-size:26px;
-    font-weight:bold;
-}
-.n12{top:8px;left:50%;transform:translateX(-50%)}
-.n3{right:8px;top:50%;transform:translateY(-50%)}
-.n6{bottom:8px;left:50%;transform:translateX(-50%)}
-.n9{left:8px;top:50%;transform:translateY(-50%)}
+
 .hand{
-    position:absolute;
-    left:50%;bottom:50%;
-    transform-origin:bottom;
+  position:absolute;
+  left:50%;
+  bottom:50%;
+  transform-origin:bottom;
 }
-.hour{width:10px;height:85px;background:#fff}
-.minute{width:6px;height:120px;background:#fff}
-.second{width:3px;height:140px;background:#ff5555}
+
+.hour{width:8px;height:90px;background:#fff}
+.minute{width:5px;height:125px;background:#fff}
+.second{width:3px;height:145px;background:#ff3333}
+
 .center{
-    width:14px;height:14px;
-    background:#fff;border-radius:50%;
-    position:absolute;top:50%;left:50%;
-    transform:translate(-50%,-50%);
+  width:14px;height:14px;
+  background:#fff;
+  border-radius:50%;
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
 }
+
+/* ساعت دیجیتال */
 .digital{
-    margin-top:14px;
-    font-size:60px;
-    font-weight:bold;
-    color:rgba(255,0,0,.85);
-    text-shadow:0 0 10px #fff;
+  margin-top:16px;
+  text-align:center;
+  font-size:62px;
+  font-weight:bold;
+  color:rgba(255,0,0,0.85);
+  text-shadow:0 0 8px #fff;
 }
 
 /* تاریخ */
-.date-box{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:12px;
+.dates{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
 }
-.date{
-    width:380px;
-    padding:14px;
-    background:rgba(255,255,255,.92);
-    backdrop-filter:blur(25px);
-    border-radius:18px;
-    text-align:center;
-    font-size:22px;
-    font-weight:bold;
-    color:#000;
+
+.date-box{
+  width:360px;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(20px);
+  border-radius:16px;
+  padding:12px;
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
 }
 
 /* کارت‌ها */
 .cards{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    grid-template-rows:repeat(2,1fr);
-    gap:14px;
-    padding:15px 35px;
+  padding:20px 30px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  grid-template-rows:repeat(2,1fr);
+  gap:14px;
 }
+
 .card{
-    background:rgba(255,255,255,.93);
-    backdrop-filter:blur(20px);
-    border-radius:16px;
-    padding:12px;
-    font-size:18px;
-    font-weight:bold;
-    color:#000;
-    text-align:right;
+  background:rgba(255,255,255,0.94);
+  backdrop-filter:blur(18px);
+  border-radius:14px;
+  padding:12px;
+  font-size:18px;
+  font-weight:900;
 }
 </style>
 </head>
 
 <body>
-
-<div class="bg"></div>
 <div class="overlay"></div>
 
-<div class="container">
+<div class="main">
 
-<!-- هدر با لوگوی داخلی -->
-<div class="header">
+<div class="header">دفتر پلیس +۱۰ یزدان پناه</div>
 
-<svg class="logo" viewBox="0 0 100 100">
-  <circle cx="50" cy="50" r="48" fill="#0a4da2"/>
-  <circle cx="50" cy="50" r="38" fill="#ffffff"/>
-  <text x="50" y="58" text-anchor="middle"
-        font-size="32" font-weight="bold"
-        fill="#0a4da2">+۱۰</text>
-</svg>
+<div class="middle">
 
-دفتر پلیس + ۱۰ یزدان پناه
+<div style="text-align:center">
+  <div class="clock" id="clock">
+    <div class="hand hour" id="h"></div>
+    <div class="hand minute" id="m"></div>
+    <div class="hand second" id="s"></div>
+    <div class="center"></div>
+  </div>
+  <div class="digital" id="digital"></div>
 </div>
 
-<div class="top">
-
-<!-- ساعت -->
-<div class="clock-box">
-    <div class="analog">
-        <div class="hand hour" id="h"></div>
-        <div class="hand minute" id="m"></div>
-        <div class="hand second" id="s"></div>
-        <div class="center"></div>
-        <div class="num n12">12</div>
-        <div class="num n3">3</div>
-        <div class="num n6">6</div>
-        <div class="num n9">9</div>
-    </div>
-    <div class="digital" id="digital"></div>
-</div>
-
-<!-- تاریخ -->
-<div class="date-box">
-    <div class="date" id="shamsi"></div>
-    <div class="date" id="miladi"></div>
+<div class="dates">
+  <div class="date-box" id="shamsi"></div>
+  <div class="date-box" id="miladi"></div>
 </div>
 
 </div>
 
-<!-- کارت‌ها -->
 <div class="cards">
-    <div class="card">هدف: دفتر پلیس +۱۰ یزدان پناه</div>
-    <div class="card">کد دفتر: ۵۸۵۱۱۲</div>
-    <div class="card">گذرنامه</div>
-    <div class="card">خلافی و عدم خلافی</div>
-    <div class="card">کارت سوخت</div>
-    <div class="card">ترخیص وسیله نقلیه</div>
-    <div class="card">وظیفه عمومی</div>
-    <div class="card">اعزام به خدمت</div>
-    <div class="card">معافیت تحصیلی</div>
-    <div class="card">یارانه</div>
+  <div class="card">هدف: دفتر پلیس +۱۰ یزدان پناه</div>
+  <div class="card">کد دفتر: ۵۸۵۱۱۲</div>
+  <div class="card">گذرنامه</div>
+  <div class="card">خلافی و عدم خلافی</div>
+  <div class="card">کارت سوخت</div>
+  <div class="card">ترخیص وسیله نقلیه</div>
+  <div class="card">وظیفه عمومی</div>
+  <div class="card">اعزام به خدمت</div>
+  <div class="card">معافیت تحصیلی</div>
+  <div class="card">یارانه</div>
 </div>
 
 </div>
 
 <script>
+/* اعداد ساعت */
+const clock=document.getElementById("clock");
+for(let i=1;i<=12;i++){
+  const n=document.createElement("div");
+  n.className="number";
+  n.innerText=i;
+  const angle=(i*30-90)*Math.PI/180;
+  const r=140;
+  n.style.left=160+r*Math.cos(angle)-10+"px";
+  n.style.top=160+r*Math.sin(angle)-10+"px";
+  clock.appendChild(n);
+}
+
 function update(){
-    const d=new Date();
-    h.style.transform=`rotate(${(d.getHours()%12)*30+d.getMinutes()/2}deg)`;
-    m.style.transform=`rotate(${d.getMinutes()*6}deg)`;
-    s.style.transform=`rotate(${d.getSeconds()*6}deg)`;
-    digital.innerText=d.toLocaleTimeString('en-GB');
-    shamsi.innerText=d.toLocaleDateString('fa-IR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-    miladi.innerText=d.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  const d=new Date();
+  h.style.transform=`rotate(${(d.getHours()%12)*30+d.getMinutes()/2}deg)`;
+  m.style.transform=`rotate(${d.getMinutes()*6}deg)`;
+  s.style.transform=`rotate(${d.getSeconds()*6}deg)`;
+  digital.innerText=d.toLocaleTimeString('en-GB');
+  shamsi.innerText=d.toLocaleDateString('fa-IR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  miladi.innerText=d.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
 }
 setInterval(update,1000);update();
 </script>
