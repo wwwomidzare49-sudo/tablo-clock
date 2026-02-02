@@ -31,7 +31,7 @@ body{
   background:rgba(0,0,0,0.45);
 }
 
-/* ساختار */
+/* ساختار اصلی */
 .wrapper{
   position:relative;
   width:100%;
@@ -102,28 +102,28 @@ body{
 /* ساعت دیجیتال */
 .digital{
   margin-top:18px;
-  font-size:72px;
+  font-size:72px;       /* کمی بزرگ‌تر */
   font-weight:900;
   color:rgba(210,50,50,0.85);
   text-shadow:0 0 10px #fff;
 }
 
-/* تاریخ‌ها (بزرگ‌تر شد) */
+/* تاریخ‌ها */
 .dates{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:18px;
+  gap:16px;
 }
 
 .date-box{
-  width:460px;
+  width:420px;
   background:rgba(255,255,255,0.94);
   backdrop-filter:blur(22px);
-  border-radius:20px;
-  padding:18px;
-  font-size:30px;
-  font-weight:900;
+  border-radius:18px;
+  padding:16px;
+  font-size:28px;       /* کمی بزرگ‌تر و خوانا */
+  font-weight:900;      /* پررنگ */
   color:#000;
   text-align:center;
 }
@@ -133,16 +133,16 @@ body{
   display:grid;
   grid-template-columns:repeat(5,1fr);
   grid-template-rows:repeat(2,1fr);
-  gap:18px;
+  gap:16px;
 }
 
 .card{
   background:rgba(255,255,255,0.95);
   backdrop-filter:blur(20px);
-  border-radius:18px;
-  padding:18px;
-  font-size:24px;      /* بزرگ‌تر شد */
-  font-weight:900;
+  border-radius:16px;
+  padding:16px;
+  font-size:22px;       /* کمی بزرگ‌تر */
+  font-weight:900;      /* پررنگ */
   color:#000;
 }
 </style>
@@ -191,7 +191,7 @@ body{
 </div>
 
 <script>
-/* اعداد ساعت */
+/* اعداد ساعت 1 تا 12 */
 const clock=document.getElementById("clock");
 const radius=150;
 for(let i=1;i<=12;i++){
