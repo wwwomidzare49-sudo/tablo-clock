@@ -7,6 +7,7 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+
 html,body{
   width:1920px;
   height:1080px;
@@ -15,22 +16,25 @@ html,body{
   font-family:Tahoma, sans-serif;
 }
 
-/* پس‌زمینه پایدار برای Android TV */
+/* پس‌زمینه */
 body{
-  background:url("https://i1.delgarm.com/images/news/a813/1398/05/12/1564838069_E5kH3.jpg")
-  center center / cover no-repeat fixed;
+  background-image:url("https://i1.delgarm.com/images/news/a813/1398/05/12/1564838069_E5kH3.jpg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
 }
 
 /* لایه تیره */
 .overlay{
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,.45);
+  background:rgba(0,0,0,0.45);
 }
 
-/* ساختار کلی */
+/* ساختار */
 .wrapper{
   position:relative;
+  width:100%;
   height:100%;
   display:grid;
   grid-template-rows:100px 1fr 300px;
@@ -55,19 +59,20 @@ body{
 
 /* ساعت آنالوگ */
 .clock-wrap{text-align:center}
+
 .clock{
   width:340px;
   height:340px;
   margin:auto;
   border-radius:50%;
-  background:rgba(170,210,255,.28);
-  backdrop-filter:blur(28px);
+  background:rgba(120,180,255,0.30);
+  backdrop-filter:blur(30px);
   position:relative;
 }
 
 .number{
   position:absolute;
-  color:#fff;
+  color:#f5f7fa;
   font-size:26px;
   font-weight:900;
 }
@@ -78,43 +83,46 @@ body{
   bottom:50%;
   transform-origin:bottom;
 }
-.hour{width:9px;height:95px;background:#fff}
-.minute{width:6px;height:135px;background:#fff}
-.second{width:3px;height:155px;background:#ff3b3b}
+
+.hour{width:9px;height:95px;background:#f5f7fa}
+.minute{width:6px;height:135px;background:#f5f7fa}
+.second{width:3px;height:155px;background:rgba(210,50,50,0.85)}
 
 .center{
-  width:14px;height:14px;
-  background:#fff;
+  width:14px;
+  height:14px;
+  background:#f5f7fa;
   border-radius:50%;
   position:absolute;
-  top:50%;left:50%;
+  top:50%;
+  left:50%;
   transform:translate(-50%,-50%);
 }
 
 /* ساعت دیجیتال */
 .digital{
   margin-top:18px;
-  font-size:68px;
+  font-size:72px;
   font-weight:900;
-  color:rgba(255,0,0,.85);
+  color:rgba(210,50,50,0.85);
   text-shadow:0 0 10px #fff;
 }
 
-/* تاریخ */
+/* تاریخ‌ها (بزرگ‌تر شد) */
 .dates{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:16px;
+  gap:18px;
 }
 
 .date-box{
-  width:420px;
-  background:rgba(255,255,255,.94);
+  width:460px;
+  background:rgba(255,255,255,0.94);
   backdrop-filter:blur(22px);
-  border-radius:18px;
-  padding:14px;
-  font-size:26px;
+  border-radius:20px;
+  padding:18px;
+  font-size:30px;
   font-weight:900;
   color:#000;
   text-align:center;
@@ -125,15 +133,15 @@ body{
   display:grid;
   grid-template-columns:repeat(5,1fr);
   grid-template-rows:repeat(2,1fr);
-  gap:16px;
+  gap:18px;
 }
 
 .card{
-  background:rgba(255,255,255,.95);
+  background:rgba(255,255,255,0.95);
   backdrop-filter:blur(20px);
-  border-radius:16px;
-  padding:14px;
-  font-size:20px;
+  border-radius:18px;
+  padding:18px;
+  font-size:24px;      /* بزرگ‌تر شد */
   font-weight:900;
   color:#000;
 }
@@ -141,57 +149,58 @@ body{
 </head>
 
 <body>
+
 <div class="overlay"></div>
 
 <div class="wrapper">
 
-<div class="header">دفتر پلیس +۱۰ یزدان پناه</div>
+  <div class="header">دفتر پلیس +۱۰ یزدان پناه</div>
 
-<div class="middle">
+  <div class="middle">
 
-<div class="clock-wrap">
-  <div class="clock" id="clock">
-    <div class="hand hour" id="h"></div>
-    <div class="hand minute" id="m"></div>
-    <div class="hand second" id="s"></div>
-    <div class="center"></div>
+    <div class="clock-wrap">
+      <div class="clock" id="clock">
+        <div class="hand hour" id="h"></div>
+        <div class="hand minute" id="m"></div>
+        <div class="hand second" id="s"></div>
+        <div class="center"></div>
+      </div>
+      <div class="digital" id="digital"></div>
+    </div>
+
+    <div class="dates">
+      <div class="date-box" id="shamsi"></div>
+      <div class="date-box" id="miladi"></div>
+    </div>
+
   </div>
-  <div class="digital" id="digital"></div>
-</div>
 
-<div class="dates">
-  <div class="date-box" id="shamsi"></div>
-  <div class="date-box" id="miladi"></div>
-</div>
-
-</div>
-
-<div class="cards">
-  <div class="card">هدف: دفتر پلیس +۱۰ یزدان پناه</div>
-  <div class="card">کد دفتر: ۵۸۵۱۱۲</div>
-  <div class="card">گذرنامه</div>
-  <div class="card">خلافی و عدم خلافی</div>
-  <div class="card">کارت سوخت</div>
-  <div class="card">ترخیص وسیله نقلیه</div>
-  <div class="card">وظیفه عمومی</div>
-  <div class="card">اعزام به خدمت</div>
-  <div class="card">معافیت تحصیلی</div>
-  <div class="card">یارانه</div>
-</div>
+  <div class="cards">
+    <div class="card">هدف: دفتر پلیس +۱۰ یزدان پناه</div>
+    <div class="card">کد دفتر: ۵۸۵۱۱۲</div>
+    <div class="card">گذرنامه</div>
+    <div class="card">خلافی و عدم خلافی</div>
+    <div class="card">کارت سوخت</div>
+    <div class="card">ترخیص وسیله نقلیه</div>
+    <div class="card">وظیفه عمومی</div>
+    <div class="card">اعزام به خدمت</div>
+    <div class="card">معافیت تحصیلی</div>
+    <div class="card">یارانه</div>
+  </div>
 
 </div>
 
 <script>
-/* اعداد ساعت 1 تا 12 */
+/* اعداد ساعت */
 const clock=document.getElementById("clock");
-const r=150;
+const radius=150;
 for(let i=1;i<=12;i++){
   const n=document.createElement("div");
   n.className="number";
   n.innerText=i;
-  const a=(i*30-90)*Math.PI/180;
-  n.style.left=170+r*Math.cos(a)-12+"px";
-  n.style.top=170+r*Math.sin(a)-12+"px";
+  const angle=(i*30-90)*Math.PI/180;
+  n.style.left=170+radius*Math.cos(angle)-12+"px";
+  n.style.top=170+radius*Math.sin(angle)-12+"px";
   clock.appendChild(n);
 }
 
@@ -204,7 +213,8 @@ function update(){
   shamsi.innerText=d.toLocaleDateString("fa-IR",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
   miladi.innerText=d.toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
 }
-setInterval(update,1000);update();
+setInterval(update,1000);
+update();
 </script>
 
 </body>
