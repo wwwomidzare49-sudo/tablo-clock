@@ -7,7 +7,6 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
 html,body{
   width:1920px;
   height:1080px;
@@ -16,7 +15,6 @@ html,body{
   font-family:Tahoma, sans-serif;
 }
 
-/* پس‌زمینه */
 body{
   background-image:url("https://i1.delgarm.com/images/news/a813/1398/05/12/1564838069_E5kH3.jpg");
   background-size:cover;
@@ -24,14 +22,12 @@ body{
   background-repeat:no-repeat;
 }
 
-/* لایه تیره */
 .overlay{
   position:absolute;
   inset:0;
   background:rgba(0,0,0,0.45);
 }
 
-/* ساختار اصلی */
 .wrapper{
   position:relative;
   width:100%;
@@ -41,7 +37,6 @@ body{
   padding:10px 40px;
 }
 
-/* هدر */
 .header{
   text-align:center;
   color:#fff;
@@ -50,14 +45,12 @@ body{
   line-height:100px;
 }
 
-/* بخش میانی */
 .middle{
   display:grid;
   grid-template-columns:1fr 1fr;
   align-items:center;
 }
 
-/* ساعت آنالوگ */
 .clock-wrap{text-align:center}
 
 .clock{
@@ -99,16 +92,14 @@ body{
   transform:translate(-50%,-50%);
 }
 
-/* ساعت دیجیتال */
 .digital{
   margin-top:18px;
-  font-size:72px;       /* کمی بزرگ‌تر */
+  font-size:72px;
   font-weight:900;
   color:rgba(210,50,50,0.85);
   text-shadow:0 0 10px #fff;
 }
 
-/* تاریخ‌ها */
 .dates{
   display:flex;
   flex-direction:column;
@@ -122,13 +113,12 @@ body{
   backdrop-filter:blur(22px);
   border-radius:18px;
   padding:16px;
-  font-size:28px;       /* کمی بزرگ‌تر و خوانا */
+  font-size:28px;       /* کمی بزرگ و پررنگ‌تر برای خوانایی */
   font-weight:900;      /* پررنگ */
   color:#000;
   text-align:center;
 }
 
-/* کارت‌ها */
 .cards{
   display:grid;
   grid-template-columns:repeat(5,1fr);
@@ -141,8 +131,8 @@ body{
   backdrop-filter:blur(20px);
   border-radius:16px;
   padding:16px;
-  font-size:22px;       /* کمی بزرگ‌تر */
-  font-weight:900;      /* پررنگ */
+  font-size:22px;       /* کمی بزرگ و پررنگ‌تر */
+  font-weight:900;
   color:#000;
 }
 </style>
@@ -191,7 +181,6 @@ body{
 </div>
 
 <script>
-/* اعداد ساعت 1 تا 12 */
 const clock=document.getElementById("clock");
 const radius=150;
 for(let i=1;i<=12;i++){
