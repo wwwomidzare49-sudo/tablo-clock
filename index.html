@@ -2,7 +2,7 @@
 <html lang="fa">
 <head>
 <meta charset="UTF-8">
-<title> دفتر پلیس +۱۰ یزدان پناه</title>
+<title>دفتر پلیس +۱۰ یزدان پناه</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -14,7 +14,6 @@ html,body{
   font-family:Tahoma, sans-serif;
 }
 
-/* پس‌زمینه سازگار با Firefox و TV */
 body{
   background-image:url("https://i1.delgarm.com/images/news/a813/1398/05/12/1564838069_E5kH3.jpg");
   background-size:cover;
@@ -22,39 +21,47 @@ body{
   background-repeat:no-repeat;
 }
 
-/* لایه تیره */
 .overlay{
   position:fixed;
   inset:0;
   background:rgba(0,0,0,0.45);
 }
 
-/* ساختار */
 .main{
   position:relative;
   height:100%;
   display:grid;
-  grid-template-rows:80px 1.2fr 270px;
-  color:#000;
+  grid-template-rows:80px 1fr 100px;
 }
 
-/* هدر */
+/* لوگو */
+.logo{
+  position:absolute;
+  top:15px;
+  right:25px;
+  width:95px;
+  height:95px;
+  border-radius:50%;
+  box-shadow:0 0 15px rgba(255,255,255,0.6);
+  object-fit:cover;
+  z-index:10;
+}
+
 .header{
   text-align:center;
   color:#fff;
-  font-size:78px;
+  font-size:70px;
   font-weight:bold;
-  line-height:90px;
+  line-height:80px;
 }
 
-/* بخش وسط */
 .middle{
   display:grid;
   grid-template-columns:1fr 1fr;
   align-items:center;
 }
 
-/* ساعت آنالوگ */
+/* ساعت */
 .clock{
   width:320px;
   height:320px;
@@ -92,17 +99,15 @@ body{
   transform:translate(-50%,-50%);
 }
 
-/* ساعت دیجیتال */
 .digital{
   margin-top:16px;
   text-align:center;
-  font-size:84px;
+  font-size:80px;
   font-weight:bold;
-  color:rgba(255,0,0,0.85);
+  color:rgba(255,0,0,0.9);
   text-shadow:0 0 8px #fff;
 }
 
-/* تاریخ */
 .dates{
   display:flex;
   flex-direction:column;
@@ -111,32 +116,57 @@ body{
 }
 
 .date-box{
-  width:360px;
+  width:380px;
   background:rgba(255,255,255,0.92);
   backdrop-filter:blur(20px);
   border-radius:16px;
   padding:18px;
-  font-size:34px;
+  font-size:30px;
   font-weight:bold;
   text-align:center;
 }
 
-/* کارت‌ها */
-.cards{
-  padding:60px 35px;
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  grid-template-rows:repeat(2,1fr);
-  gap:16px;
+/* نوار خبری */
+.news-bar{
+  position:relative;
+  overflow:hidden;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(18px);
+  display:flex;
+  align-items:center;
 }
 
-.card{
-  background:rgba(255,255,255,0.94);
-  backdrop-filter:blur(18px);
-  border-radius:20px;
-  padding:2px;
-  font-size:20px;
-  font-weight:999;
+/* افکت محو */
+.news-bar::before,
+.news-bar::after{
+  content:"";
+  position:absolute;
+  top:0;
+  width:150px;
+  height:100%;
+  z-index:2;
+}
+
+.news-bar::before{
+  right:0;
+  background:linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+
+.news-bar::after{
+  left:0;
+  background:linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+
+.news-track{
+  display:flex;
+  white-space:nowrap;
+  will-change:transform;
+}
+
+.news-item{
+  font-size:34px;
+  font-weight:bold;
+  margin:0 35px;
 }
 </style>
 </head>
@@ -145,6 +175,8 @@ body{
 <div class="overlay"></div>
 
 <div class="main">
+
+<img src="https://i1.delgarm.com/images/news/a813/1398/05/12/1564838069_E5kH3.jpg" class="logo">
 
 <div class="header">دفتر پلیس +۱۰ یزدان پناه</div>
 
@@ -167,23 +199,31 @@ body{
 
 </div>
 
-<div class="cards">
-  <div class="card">هدف: دفتر پلیس +۱۰ یزدان پناه</div>
-  <div class="card">کد دفتر: ۵۸۵۱۱۲</div>
-  <div class="card">،گذرنامه گواهینامه✓</div>
-  <div class="card">وظیفه عمومی،سنوات تحصیلی دانشجویان✓</div>
-  <div class="card">تعویض کارت پایان خدمت،اعزام به خدمت</div>
-  <div class="card"> ترخیص وسیله نقلیه✓</div>
-  <div class="card">✓خلافی و عدم خلافی خودرو</div>
-  <div class="card">✓پیگیری کارت سوخت</div>
-  <div class="card">معافیت تحصیلی✓</div>
-  <div class="card"> یارانه،احرازهویت✓</div>
+<div class="news-bar">
+  <div class="news-track" id="newsTrack">
+    <span class="news-item">دفتر پلیس +۱۰ یزدان پناه</span>
+    <span class="news-item">کد دفتر: ۵۸۵۱۱۲</span>
+    <span class="news-item">صدور و تمدید گذرنامه ✓</span>
+    <span class="news-item">صدور و تمدید گواهینامه ✓</span>
+    <span class="news-item">امور وظیفه عمومی ✓</span>
+    <span class="news-item">معافیت تحصیلی ✓</span>
+    <span class="news-item">درخواست کارت پایان خدمت ✓</span>
+    <span class="news-item">تعویض کارت پایان خدمت ✓</span>
+    <span class="news-item">اعزام به خدمت ✓</span>
+    <span class="news-item">ترخیص وسیله نقلیه ✓</span>
+    <span class="news-item">استعلام خلافی خودرو ✓</span>
+    <span class="news-item">گواهی عدم خلافی ✓</span>
+    <span class="news-item">پیگیری کارت سوخت ✓</span>
+    <span class="news-item">امور یارانه ✓</span>
+    <span class="news-item">احراز هویت ✓</span>
+    <span class="news-item">ثبت و پیگیری درخواست‌های انتظامی ✓</span>
+  </div>
 </div>
 
 </div>
 
 <script>
-/* اعداد ساعت */
+/* ساعت */
 const clock=document.getElementById("clock");
 for(let i=1;i<=12;i++){
   const n=document.createElement("div");
@@ -206,6 +246,23 @@ function update(){
   miladi.innerText=d.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
 }
 setInterval(update,1000);update();
+
+/* نوار خبری لوپ واقعی با سرعت ملایم */
+const track=document.getElementById("newsTrack");
+track.innerHTML += track.innerHTML;
+
+let position=0;
+const speed=2; // سرعت ملایم و رسمی
+
+function animate(){
+  position+=speed;
+  if(position>=track.scrollWidth/2){
+    position=0;
+  }
+  track.style.transform=`translateX(${position}px)`;
+  requestAnimationFrame(animate);
+}
+animate();
 </script>
 
 </body>
