@@ -262,7 +262,33 @@ function animate(){
   track.style.transform=`translateX(${position}px)`;
   requestAnimationFrame(animate);
 }
-animate();
+animate();/* جلوگیری از خاموش شدن صفحه */
+let wakeLock = null;
+
+async function keepScreenAwake() {
+  try {
+    if ('wakeLock' in navigator) {
+      wakeLock = await navigator.wakeLock.request('screen');
+      console.log("Wake Lock فعال شد");
+
+      wakeLock.addEventListener('release', () => {
+        console.log("Wake Lock آزاد شد");
+      });
+    }
+  } catch (err) {
+    console.log("Wake Lock خطا:", err);
+  }
+}
+
+/* وقتی صفحه لود شد فعال شود */
+keepScreenAwake();
+
+/* اگر کاربر برگشت به صفحه دوباره فعال شود */
+document.addEventListener('visibilitychange', () => {
+  if (wakeLock !== null && document.visibilityState === 'visible') {
+    keepScreenAwake();
+  }
+});
 </script>
 
 </body>
